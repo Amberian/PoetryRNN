@@ -4,7 +4,6 @@ from torch.autograd import Variable
 from torch.utils.data import DataLoader
 from visdom import Visdom
 from torchnet import meter
-from tqdm import tqdm
 import numpy as np
 import ipdb
 
@@ -122,7 +121,7 @@ def train(opt):
 
                 vis.text('</br>'.join([''.join(poetry) for poetry in poetrys]),win=u'origin_poem')
 
-                #显示生成的诗
+                #可以在这里显示生成效果，但是验证下来发现写在外面比较好
                 gen_poetries=[]
                 # out=generate(model, '春', ix2word, word2ix)
                 # print('generate:',out)
@@ -130,18 +129,13 @@ def train(opt):
                 #     gen_poetry=''.join(generate(model,word,ix2word,word2ix))#根据一个字生成一首诗
                 #     gen_poetries.append(gen_poetry)#一共得到8首诗
                 # vis.text('</br>'.join([''.join(gen) for gen in gen_poetries]),win=u'generate_poem')
-                # start_words='月夜凉如水'
-                # # gen_poetry = '</br>'.join(''.join(generate(model, word, ix2word, word2ix) )for word in start_words)
-                # # vis.text(''.join(gen_poetry), win=u'generate_poem')
-                # gen_poetry = ''.join(generate(model, start_words, ix2word, word2ix))
-                # vis.text(''.join(gen_poetry), win=u'generate_poem')
         start_words='月夜凉如水'
         gen_poetry = ''.join(generate(model, start_words, ix2word, word2ix))
-        print(epoch,':',gen_poetry)
+        print(epoch,':',gen_poetry)#在每个epoch中验证一次效果
         #保存模型
         t.save(model.state_dict(),'%s_%s.pth'%(opt.model_prefix,epoch))
 
-def test(opt,start_words=None):
+def test(opt,start_words=None):#测试生成效果
     data, ix2word, word2ix = get_data(opt)
     model=PoetryModel(len(word2ix),opt.embed_size,opt.hidden_dim)
     model.load_state_dict(t.load('checkpoints/poetry4_49.pth'))#可替换
