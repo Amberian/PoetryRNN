@@ -25,3 +25,5 @@ class Config(object):
     start_words='杨柳青青'#诗歌开始
     acrostic=False#是否是藏头诗
     model_prefix='checkpoints/poetry5'#模型保存路径
+
+    
