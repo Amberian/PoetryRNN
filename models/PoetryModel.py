@@ -3,6 +3,7 @@ from torch import nn
 from torch.autograd import Variable
 import torch.nn.functional as F
 
+
 class PoetryModel(nn.Module):
     def __init__(self,vocab_size,embed_dim,hidden_dim):
         super(PoetryModel,self).__init__()
