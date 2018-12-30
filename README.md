@@ -1,5 +1,3 @@
-参考[《深度学习框架 PyTorch入门与实践》](https://github.com/Amberian/pytorch-book/tree/master/chapter9-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%86%99%E8%AF%97(CharRNN))用LSTM生成古诗
-===
 数据来源：[复旦大学中文古诗简体库](https://github.com/chinese-poetry/chinese-poetry-zhCN)，将其chinese-poetry-zhCN-master文件夹放入本项目data文件夹下
 
 文件说明
@@ -8,7 +6,7 @@ checkpoints/: 保存训练好的模型
 
 data/: 包括数据预处理、dataset实现等
 
-models/: 模型定义
+models/: 模型定义，包括LSTM和Seq2Seq with Attention两种模型
 
 results/: 用以记录生成的古诗，本项目简单的用txt记录
 
@@ -20,7 +18,7 @@ requirements.txt: 程序依赖的第三方库
 
 程序运行
 ---
-在main函数中直接修改，选择train或者test,test的时候可以修改start_words或者不写直接用默认值
+在main函数中先选择要import进trains文件下的哪种方法，然后直接运行，选择train或者test,test的时候可以修改start_words或者不写直接用默认值
 
 ```ython
 
